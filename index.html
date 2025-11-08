@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROBEE OS - Desktop </title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loader-logo">ROBEE</div>
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcome-modal">
+        <div class="modal-window">
+            <div class="modal-header">
+                <span class="modal-title">Welcome to ROBEE's Desktop</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">👋</div>
+                <div class="modal-text">
+                    <strong>Welcome!</strong><br>
+                    Would you like to know more about me and explore my CV?
+                </div>
+                <div class="modal-buttons">
+                    <button class="modal-btn" onclick="openTerminal()">Yes</button>
+                    <button class="modal-btn" onclick="closeWelcome()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop -->
+    <div id="desktop">
+        <!-- Theme Toggle -->
+        <div id="theme-toggle" onclick="toggleTheme()">🌙</div>
+        
+        <!-- Theme Toggle Trigger (appears when window is maximized) -->
+        <div id="theme-toggle-trigger" onclick="toggleThemeVisibility()">🎨</div>
+
+        <!-- Terminal Window -->
+        <div id="terminal-window" class="window" style="left: 100px; top: 50px;">
+            <div class="window-header">
+                <div class="window-title">
+                    <span>💻</span>
+                    <span>Terminal CV</span>
+                </div>
+                <div class="window-controls">
+                    <div class="window-btn close-btn" onclick="closeWindow('terminal-window')"></div>
+                    <div class="window-btn maximize-btn" onclick="maximizeWindow('terminal-window')"></div>
+                    <div class="window-btn minimize-btn" onclick="minimizeWindow('terminal-window')"></div>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="terminal-output" id="terminal-output">
+                    <p id="welcome-text"></p>
+                    <p class="help-text">Type 'help' to see available commands</p>
+                </div>
+                <div class="terminal-input-line">
+                    <span class="terminal-prompt">➜ 0xROBEE@CV:</span>
+                    <input type="text" class="terminal-input" id="terminal-input">
+                </div>
+                <div class="scroll-to-bottom" id="scroll-to-bottom" onclick="scrollToBottom()">⬇</div>
+            </div>
+        </div>
+
+        <!-- Notepad Window -->
+        <div id="notepad-window" class="window" style="left: 150px; top: 100px;">
+            <div class="window-header">
+                <div class="window-title">
+                    <span>📝</span>
+                    <span>Notepad</span>
+                </div>
+                <div class="window-controls">
+                    <div class="window-btn close-btn" onclick="closeWindow('notepad-window')"></div>
+                    <div class="window-btn maximize-btn" onclick="maximizeWindow('notepad-window')"></div>
+                    <div class="window-btn minimize-btn" onclick="minimizeWindow('notepad-window')"></div>
+                </div>
+            </div>
+            <div class="window-content" style="padding: 0;">
+                <textarea class="notepad-textarea" placeholder="Start typing..."></textarea>
+            </div>
+        </div>
+
+        <!-- Settings Window -->
+        <div id="settings-window" class="window" style="left: 200px; top: 150px;">
+            <div class="window-header">
+                <div class="window-title">
+                    <span>⚙️</span>
+                    <span>Settings</span>
+                </div>
+                <div class="window-controls">
+                    <div class="window-btn close-btn" onclick="closeWindow('settings-window')"></div>
+                    <div class="window-btn maximize-btn" onclick="maximizeWindow('settings-window')"></div>
+                    <div class="window-btn minimize-btn" onclick="minimizeWindow('settings-window')"></div>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="settings-section">
+                    <h3>🎨 Theme Color</h3>
+                    <div class="setting-item">
+                        <label class="setting-label">Choose your accent color:</label>
+                        <div class="color-picker-container">
+                            <div class="color-option active" style="background: #6366f1;" onclick="changeThemeColor('#6366f1')"></div>
+                            <div class="color-option" style="background: #ec4899;" onclick="changeThemeColor('#ec4899')"></div>
+                            <div class="color-option" style="background: #10b981;" onclick="changeThemeColor('#10b981')"></div>
+                            <div class="color-option" style="background: #f59e0b;" onclick="changeThemeColor('#f59e0b')"></div>
+                            <div class="color-option" style="background: #8b5cf6;" onclick="changeThemeColor('#8b5cf6')"></div>
+                            <div class="color-option" style="background: #06b6d4;" onclick="changeThemeColor('#06b6d4')"></div>
+                            <div class="color-option" style="background: #ef4444;" onclick="changeThemeColor('#ef4444')"></div>
+                            <div class="color-option" style="background: #14b8a6;" onclick="changeThemeColor('#14b8a6')"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>🖼️ Background Image</h3>
+                    <div class="setting-item">
+                        <label class="setting-label">Upload or paste image URL:</label>
+                        <div class="bg-upload-area" onclick="document.getElementById('bg-file').click()">
+                            <div>📁 Click to upload or drag image here</div>
+                            <input type="file" id="bg-file" accept="image/*" style="display: none;" onchange="uploadBackground(event)">
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <input type="text" id="bg-url" placeholder="Or paste image URL here..." 
+                                style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 6px; color: var(--text-primary); outline: none;">
+                            <button class="btn" style="margin-top: 10px;" onclick="setBackgroundFromUrl()">Apply URL</button>
+                        </div>
+                        <button class="btn" style="margin-top: 10px; background: var(--error);" onclick="removeBackground()">Remove Background</button>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>🌓 Appearance</h3>
+                    <div class="setting-item">
+                        <label class="setting-label">Current Mode: <span id="mode-display">Dark</span></label>
+                        <button class="btn" onclick="toggleTheme()">Toggle Theme</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dock -->
+        <div id="dock">
+            <div class="dock-icon" style="background: #6366f1;" onclick="toggleWindow('terminal-window')" title="Terminal CV">💻</div>
+            <div class="dock-icon" style="background: #10b981;" onclick="toggleWindow('notepad-window')" title="Notepad">📝</div>
+            <div class="dock-icon" style="background: #f59e0b;" onclick="toggleWindow('settings-window')" title="Settings">⚙️</div>
+        </div>
+    </div>
+
+</body>
+</html>
