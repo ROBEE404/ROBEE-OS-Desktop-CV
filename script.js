@@ -7,7 +7,7 @@
         // DEFAULT WALLPAPER CONFIGURATION
         // Change this path to set your default wallpaper
         // ============================================
-        const DEFAULT_WALLPAPER = 'wallpaper/vidoev2.gif'; // Put your image path here (e.g., 'wallpaper.jpg' or 'https://example.com/image.jpg')
+        const DEFAULT_WALLPAPER = 'wallpaper/vidoev2.gif';
         // ============================================
 
         // Apply default wallpaper on page load
@@ -21,15 +21,15 @@
         // WELCOME TEXT COLOR CONFIGURATION
         // Change these colors for "Welcome to ROBEE's Terminal CV"
         // ============================================
-        const WELCOME_COLOR_DARK = '#6366f1';  // Blue/Purple for dark mode
-        const WELCOME_COLOR_LIGHT = '#8b5cf6'; // Purple for light mode
+        const WELCOME_COLOR_DARK = '#6366f1';  //dark mode
+        const WELCOME_COLOR_LIGHT = '#8b5cf6'; //light mode
         // ============================================
 
         // TERMINAL PROMPT COLOR CONFIGURATION
-        // Change these colors for the terminal prompt (➜ 0xROBEE@CV:)
+        // colors for the terminal prompt (➜ 0xROBEE@CV:)
         // ============================================
-        const PROMPT_COLOR_DARK = '#10b981';  // Green for dark mode
-        const PROMPT_COLOR_LIGHT = '#0891b2'; // Cyan for light mode
+        const PROMPT_COLOR_DARK = '#10b981';  // dark mode
+        const PROMPT_COLOR_LIGHT = '#0891b2'; // light mode
         // ============================================
 
         // Apply welcome text colors
@@ -429,4 +429,5 @@
         // Prevent text selection while dragging
         document.addEventListener('selectstart', (e) => {
             if (draggedWindow) e.preventDefault();
+
         });
