@@ -3,43 +3,30 @@
         let isDarkMode = true;
         let currentThemeColor = '#6366f1';
 
-        // ============================================
-        // DEFAULT WALLPAPER CONFIGURATION
-        // Change this path to set your default wallpaper
-        // ============================================
-        const DEFAULT_WALLPAPER = 'wallpaper/vidoev2.gif';
-        // ============================================
 
-        // Apply default wallpaper on page load
+        const DEFAULT_WALLPAPER = 'wallpaper/vidoev2.gif';
+
         if (DEFAULT_WALLPAPER) {
             document.getElementById('desktop').style.backgroundImage = `url(${DEFAULT_WALLPAPER})`;
             document.getElementById('desktop').style.backgroundSize = 'cover';
             document.getElementById('desktop').style.backgroundPosition = 'center';
         }
 
-        // ============================================
-        // WELCOME TEXT COLOR CONFIGURATION
-        // Change these colors for "Welcome to ROBEE's Terminal CV"
-        // ============================================
-        const WELCOME_COLOR_DARK = '#6366f1';  //dark mode
-        const WELCOME_COLOR_LIGHT = '#8b5cf6'; //light mode
-        // ============================================
+        const WELCOME_COLOR_DARK = '#6366f1'; 
+        const WELCOME_COLOR_LIGHT = '#8b5cf6'; 
+       
+        const PROMPT_COLOR_DARK = '#10b981';  
+        const PROMPT_COLOR_LIGHT = '#0891b2'; 
+      
 
-        // TERMINAL PROMPT COLOR CONFIGURATION
-        // colors for the terminal prompt (➜ 0xROBEE@CV:)
-        // ============================================
-        const PROMPT_COLOR_DARK = '#10b981';  // dark mode
-        const PROMPT_COLOR_LIGHT = '#0891b2'; // light mode
-        // ============================================
-
-        // Apply welcome text colors
+      
         document.documentElement.style.setProperty('--welcome-text-color', WELCOME_COLOR_DARK);
         
-        // Apply prompt colors
+       
         document.documentElement.style.setProperty('--terminal-prompt-dark', PROMPT_COLOR_DARK);
         document.documentElement.style.setProperty('--terminal-prompt-light', PROMPT_COLOR_LIGHT);
 
-        // Loading Screen
+      
         setTimeout(() => {
             document.getElementById('loading').style.opacity = '0';
             setTimeout(() => {
@@ -58,7 +45,7 @@
             typeWelcomeMessage();
         }
 
-        // Terminal Welcome Animation
+       
         function typeWelcomeMessage() {
             const welcomeText = document.getElementById('welcome-text');
             const text = "Welcome to ROBEE's Terminal CV";
@@ -72,7 +59,7 @@
             }, 50);
         }
 
-        // Terminal Commands
+    
         document.getElementById('terminal-input').addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 const command = e.target.value.trim().toLowerCase();
@@ -81,7 +68,7 @@
             }
         });
 
-        // Scroll to Bottom Functionality
+
         const terminalOutput = document.getElementById('terminal-output');
         const scrollButton = document.getElementById('scroll-to-bottom');
 
@@ -91,7 +78,7 @@
             const scrollHeight = container.scrollHeight;
             const clientHeight = container.clientHeight;
             
-            // Show button if not at bottom and there's content to scroll
+  
             if (scrollHeight - scrollTop - clientHeight > 50) {
                 scrollButton.classList.add('show');
             } else {
@@ -107,7 +94,7 @@
             });
         }
 
-        // Monitor scroll on terminal window
+
         document.querySelector('#terminal-window .window-content').addEventListener('scroll', checkScrollPosition);
 
         function handleCommand(command) {
@@ -187,11 +174,11 @@
             responseElement.innerHTML = response;
             output.appendChild(responseElement);
             
-            // Check if scroll button should appear
+
             checkScrollPosition();
         }
 
-        // Window Management
+
         function toggleWindow(windowId) {
             const window = document.getElementById(windowId);
             if (window.style.display === 'none' || window.style.display === '') {
@@ -293,7 +280,7 @@
             });
         }
 
-        // Drag Window Functionality
+  
         document.querySelectorAll('.window-header').forEach(header => {
             header.addEventListener('mousedown', startDrag);
         });
@@ -331,7 +318,7 @@
             document.removeEventListener('mouseup', stopDrag);
         }
 
-        // Theme Toggle
+   
         function toggleTheme() {
             isDarkMode = !isDarkMode;
             const body = document.body;
@@ -351,7 +338,6 @@
             }
         }
 
-        // Theme Color Change
         function changeThemeColor(color) {
             currentThemeColor = color;
             document.documentElement.style.setProperty('--accent', color);
@@ -380,7 +366,7 @@
                 .toString(16).slice(1);
         }
 
-        // Background Management
+
         function uploadBackground(event) {
             const file = event.target.files[0];
             if (file) {
@@ -412,21 +398,21 @@
             document.getElementById('bg-url').value = '';
         }
 
-        // Click outside to deactivate windows
+
         document.getElementById('desktop').addEventListener('mousedown', (e) => {
             if (e.target.id === 'desktop') {
                 document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
             }
         });
 
-        // Make windows clickable to activate
+  
         document.querySelectorAll('.window').forEach(window => {
             window.addEventListener('mousedown', () => {
                 setActiveWindow(window);
             });
         });
 
-        // Prevent text selection while dragging
+
         document.addEventListener('selectstart', (e) => {
             if (draggedWindow) e.preventDefault();
 
