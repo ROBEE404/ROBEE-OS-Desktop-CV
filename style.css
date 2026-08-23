@@ -4,14 +4,14 @@
             box-sizing: border-box;
         }
 
-        /* Hide scrollbar for all elements */
+      
         * {
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
         }
 
         *::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            display: none; 
         }
 
         :root {
@@ -30,8 +30,8 @@
         }
 
         :root {
-            --terminal-prompt-dark: #10b981; /* Green color for dark mode prompt */
-            --welcome-text-color: #6366f1; /* Welcome text color - change this anytime */
+            --terminal-prompt-dark: #10b981; 
+            --welcome-text-color: #6366f1; 
         }
 
         body.light-mode {
@@ -42,8 +42,8 @@
             --window-bg: rgba(255, 255, 255, 0.95);
             --dock-bg: rgba(255, 255, 255, 0.8);
             --border: rgba(0, 0, 0, 0.1);
-            --terminal-prompt-light: #0891b2; /* Cyan color for light mode prompt */
-            --welcome-text-color: #8b5cf6; /* Welcome text color in light mode */
+            --terminal-prompt-light: #0891b2; 
+            --welcome-text-color: #8b5cf6; 
         }
 
         body {
@@ -64,7 +64,7 @@
             transition: background 0.5s ease;
         }
 
-        /* Loading Screen */
+     
         #loading {
             position: fixed;
             top: 0;
@@ -113,7 +113,7 @@
             100% { width: 100%; }
         }
 
-        /* Welcome Modal */
+       
         #welcome-modal {
             position: fixed;
             top: 0;
